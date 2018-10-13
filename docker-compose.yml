@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  teamcity-agent1:
+    container_name: teamcity-agent1
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    expose:
+      - 9090
+    ports:
+      - "8111:8111"            
+    environment:
+      - SERVER_URL=https://teamcity.server.com
+      - AGENT_NAME=agent-android-macos        
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  
+    restart: always
